@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+
+import argparse
+import docker
+
+parser = argparse.ArgumentParser(description='manage vserver tasks')
+parser.add_argument("action", type=str, metavar="ACTION")
+parser.add_argument("options", type=str, metavar="OPTIONS", nargs='*')
+
+args = parser.parse_args()
+
+
+#Update all docker images
+if args.action == "docker:update-images":
+    docker.update_images()

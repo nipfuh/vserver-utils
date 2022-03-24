@@ -1,0 +1,4 @@
+#Files
+config.py
+#Folders
+__pycache__/*
