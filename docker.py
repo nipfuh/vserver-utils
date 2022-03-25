@@ -50,7 +50,7 @@ def up_containers(name=None):
             
             os.chdir(root)
             up = subprocess.run(["docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
-            print(f'Service: {root}: Returncode: {down.returncode}\n')
+            print(f'Service: {root}: Returncode: {up.returncode}\n')
             print(f'STDOUT:\n{up.stdout}')
             print(f'----------------------------\nSTDERR:\n{up.stderr}\n\n==========================================\n\n')
     else:
