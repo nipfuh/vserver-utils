@@ -56,5 +56,5 @@ def up_containers(name=None):
     else:
         os.chdir(os.path.join(config.DOCKER_ROOT_DIR, name))
         up = subprocess.run(["docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
-        print(f'Returncode: {returncode}\nSTDOUT:\n{up.stdout}')
+        print(f'Returncode: {up.returncode}\nSTDOUT:\n{up.stdout}')
         print(f'----------------------------\nSTDERR:\n{up.stderr}')
