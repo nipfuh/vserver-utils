@@ -21,6 +21,12 @@ if args.action == "docker:down-containers":
     else:
         docker.down_containers()
 
+if args.action == "docker:up-containers":
+    if args.options:
+        docker.up_containers(args.options[0])
+    else:
+        docker.up_containers()
+
 if args.action == "system-updates:check":
     system_updates.check()
 

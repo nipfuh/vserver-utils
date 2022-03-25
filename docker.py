@@ -34,11 +34,27 @@ def down_containers(name=None):
             down = subprocess.run(["docker-compose", "down"], capture_output=True, text=True, check=True)
             print(f'Service: {root}: Returncode: {down.returncode}\n')
             print(f'STDOUT:\n{down.stdout}')
-            print(f'----------------------------\nSTDERR:\n{pull.stderr}\n\n==========================================\n\n')
+            print(f'----------------------------\nSTDERR:\n{down.stderr}\n\n==========================================\n\n')
     else:
         os.chdir(os.path.join(config.DOCKER_ROOT_DIR, name))
         down = subprocess.run(["docker-compose", "down"], capture_output=True, text=True, check=True)
         print(f'STDOUT:\n{down.stdout}')
-        print(f'----------------------------\nSTDERR:\n{pull.stderr}')
+        print(f'----------------------------\nSTDERR:\n{down.stderr}')
 
 
+def up_containers(name=None):
+    if not name:
+        for root, dirs, files in os.walk(config.DOCKER_ROOT_DIR):
+            if root == config.DOCKER_ROOT_DIR:
+                continue
+            
+            os.chdir(root)
+            up = subprocess.run(["docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
+            print(f'Service: {root}: Returncode: {down.returncode}\n')
+            print(f'STDOUT:\n{up.stdout}')
+            print(f'----------------------------\nSTDERR:\n{up.stderr}\n\n==========================================\n\n')
+    else:
+        os.chdir(os.path.join(config.DOCKER_ROOT_DIR, name))
+        up = subprocess.run(["docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
+        print(f'STDOUT:\n{up.stdout}')
+        print(f'----------------------------\nSTDERR:\n{up.stderr}')
