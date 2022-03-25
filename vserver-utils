@@ -32,3 +32,16 @@ if args.action == "system-updates:check":
 
 if args.action == "system-updates:upgrade":
     system_updates.upgrade()
+
+if args.action == "maintenece:update-system":
+    print("main: starting docker updates")
+    docker.update_images()
+
+    if system_updates.check():
+        print("main: starting system updates")
+        docker.down_containers()
+        system_updates.upgrade()
+        docker.up_containers()
+    
+    else:
+        print("main: no system updates available")
