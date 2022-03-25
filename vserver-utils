@@ -15,6 +15,12 @@ args = parser.parse_args()
 if args.action == "docker:update-images":
     docker.update_images()
 
+if args.action == "docker:down-containers":
+    if args.options:
+        docker.down_containers(args.options[0])
+    else:
+        docker.down_containers()
+
 if args.action == "system-updates:check":
     system_updates.check()
 
