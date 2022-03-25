@@ -19,4 +19,4 @@ if args.action == "system-updates:check":
     system_updates.check()
 
 if args.action == "system-updates:upgrade":
-    system_udates.upgrade()
+    system_updates.upgrade()

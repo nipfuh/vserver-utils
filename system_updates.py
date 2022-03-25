@@ -16,6 +16,6 @@ def check():
 
 def upgrade():
     upgrade = subprocess.run(["aptitude", "safe-upgrade", "-y"], capture_output=True, text=True, check=True)
-    print('Upgrade:')
+    print(f'Upgrade: Return code: {upgrade.returncode}')
     print(f'STDOUT:\n{upgrade.stdout}')
-    print(f'----------------------------\nSTDERR:\n{upgrade.stderr}')
+    print(f'----------------------------\nSTDERR:\n\n{upgrade.stderr}')

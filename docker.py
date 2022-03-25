@@ -15,11 +15,11 @@ def update_images():
         up = subprocess.run(["docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
         #Output logic here
         #raise exception in case of error -> will be sent by cron
-        print(f'Service: {subdir.dirpath}')
-        print('Pull:')
+        print(f'Service: {subdir.dirpath}:')
+        print(f'Pull: Returncode: {pull.returncode}')
         print(f'STDOUT:\n{pull.stdout}')
         print(f'----------------------------\nSTDERR:\n{pull.stderr}\n:::::::::::::::::::::::::::::::::::::::::::::::::::::')
-        print('Pull:')
+        print(f'Up: Returncode: {up.returncode}')
         print(f'STDOUT:\n{up.stdout}\n')
         print(f'----------------------------\nSTDERR:\n{up.stderr}\n\n==========================================================\n\n')
 
@@ -32,7 +32,7 @@ def down_containers(name=None):
             
             os.chdir(subdir.dirpath)
             down = subprocess.run(["docker-compose", "down"], capture_output=True, text=True, check=True)
-            print(f'Service: {subdir.dirpath}\nDown:')
+            print(f'Service: {subdir.dirpath}: Returncode: {down.returncode}\n')
             print(f'STDOUT:\n{down.stdout}')
             print(f'----------------------------\nSTDERR:\n{pull.stderr}\n\n==========================================\n\n')
     else:
