@@ -4,7 +4,7 @@ import docker
 def check():
     update = subprocess.run(["aptitude", "update"], capture_output=True, text=True, check=True)
     #Output stuff
-    search = subprocess.run(["aptitude", "search", "'~U'"], capture_output=True, text=True, check=False)
+    search = subprocess.run(["aptitude", "search", '~U'], capture_output=True, text=True, check=True)
 
     available = search.stdout != ''
 
