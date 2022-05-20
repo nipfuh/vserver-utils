@@ -11,8 +11,8 @@ def update_images():
         
         #error check or fail -> cron mail
         os.chdir(root)
-        pull = subprocess.run(["/usr/local/bin/docker-compose", "pull"], capture_output=True, text=True, check=True)
-        up = subprocess.run(["/usr/local/bin/docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
+        pull = subprocess.run(["/usr/bin/docker", "compose", "pull"], capture_output=True, text=True, check=True)
+        up = subprocess.run(["/usr/bin/docker", "compose", "up", "-d"], capture_output=True, text=True, check=True)
         #Output logic here
         #raise exception in case of error -> will be sent by cron
         print(f'Service: {root}:')
@@ -31,13 +31,13 @@ def down_containers(name=None):
                 continue
             
             os.chdir(root)
-            down = subprocess.run(["/usr/local/bin/docker-compose", "down"], capture_output=True, text=True, check=True)
+            down = subprocess.run(["/usr/bin/docker", "compose", "down"], capture_output=True, text=True, check=True)
             print(f'Service: {root}: Returncode: {down.returncode}\n')
             print(f'STDOUT:\n{down.stdout}')
             print(f'----------------------------\nSTDERR:\n{down.stderr}\n\n==========================================\n\n')
     else:
         os.chdir(os.path.join(config.DOCKER_ROOT_DIR, name))
-        down = subprocess.run(["/usr/local/bin/docker-compose", "down"], capture_output=True, text=True, check=True)
+        down = subprocess.run(["/usr/bin/docker", "compose", "down"], capture_output=True, text=True, check=True)
         print(f'Returncode: {down.returncode}\nSTDOUT:\n{down.stdout}')
         print(f'----------------------------\nSTDERR:\n{down.stderr}')
 
@@ -49,12 +49,12 @@ def up_containers(name=None):
                 continue
             
             os.chdir(root)
-            up = subprocess.run(["/usr/local/bin/docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
+            up = subprocess.run(["/usr/bin/docker", "compose", "up", "-d"], capture_output=True, text=True, check=True)
             print(f'Service: {root}: Returncode: {up.returncode}\n')
             print(f'STDOUT:\n{up.stdout}')
             print(f'----------------------------\nSTDERR:\n{up.stderr}\n\n==========================================\n\n')
     else:
         os.chdir(os.path.join(config.DOCKER_ROOT_DIR, name))
-        up = subprocess.run(["/usr/local/bin/docker-compose", "up", "-d"], capture_output=True, text=True, check=True)
+        up = subprocess.run(["/usr/bin/docker", "compose", "up", "-d"], capture_output=True, text=True, check=True)
         print(f'Returncode: {up.returncode}\nSTDOUT:\n{up.stdout}')
         print(f'----------------------------\nSTDERR:\n{up.stderr}')
